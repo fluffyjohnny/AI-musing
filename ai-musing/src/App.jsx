@@ -7,7 +7,8 @@ import {
   Container,
   Button,
   Tabs,
-  styled
+  styled,
+  CssBaseline,
 } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 
@@ -22,23 +23,24 @@ const sx = {
 };
 
 const BootstrapButton = styled(Button)({
-  boxShadow: '5px, 10px',
-  textTransform: 'none',
+  boxShadow: "5px, 10px",
+  textTransform: "none",
   fontSize: 12,
-  padding: '6px 12px',
-  '&:hover': {
-    transform: 'translateY(-0.25em)',
+  padding: "6px 12px",
+  "&:hover": {
+    transform: "translateY(-0.25em)",
   },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#4287f5',
-    borderColor: '#005cbf',
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#4287f5",
+    borderColor: "#005cbf",
   },
 });
 
 function App() {
   return (
     <div className="App">
+      <CssBaseline />
       <AppBar position="relative">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -55,20 +57,51 @@ function App() {
                 textDecoration: "none",
               }}
             >
-              {" "}
               AI-musing
             </Typography>
             <Tabs sx={{ marginLeft: "auto" }} />
 
-            <BootstrapButton key="1" href='https://beta.openai.com/docs/guides/completion' size="medium" sx={sx}>
+            <BootstrapButton
+              key="1"
+              href="https://beta.openai.com/docs/guides/completion"
+              size="medium"
+              sx={sx}
+            >
               About This API
             </BootstrapButton>
-            <BootstrapButton key="2" size="medium" sx={sx}>
+            <BootstrapButton
+              key="2"
+              href="https://github.com/fluffyjohnny"
+              size="medium"
+              sx={sx}
+            >
               Author
             </BootstrapButton>
           </Toolbar>
         </Container>
       </AppBar>
+      <main>
+        <div>
+          <Container maxWidth="sm" style={{ marginTop: '50px' }}>
+            <Typography
+              variant="h4"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              Enter Your Prompt - 
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="textSecondary"
+              paragraph
+            >
+              What's on your mind?
+            </Typography>
+          </Container>
+        </div>
+      </main>
     </div>
   );
 }
