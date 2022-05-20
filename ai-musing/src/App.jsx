@@ -14,8 +14,7 @@ import {
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useEffect, useState } from "react";
 import { OpenAIApi, Configuration } from "openai";
-
-
+import './styles.scss';
 
 const sx = {
   mr: 1,
@@ -63,7 +62,7 @@ const response = async () => await openai.createCompletion("text-curie-001", {
   console.log('err', err.response.data)
 });
 
-response();
+const hello = response();
 
 
 function App() {
@@ -98,6 +97,7 @@ function App() {
               key="1"
               href="https://beta.openai.com/docs/guides/completion"
               size="medium"
+              target="_blank"
               sx={sx}
             >
               About This API
@@ -106,9 +106,10 @@ function App() {
               key="2"
               href="https://github.com/fluffyjohnny"
               size="medium"
+              target="_blank"
               sx={sx}
             >
-              Author
+              GitHub
             </BootstrapButton>
           </Toolbar>
         </Container>
@@ -144,11 +145,19 @@ function App() {
             Hello
             </Button>
             <Typography>
-              hello
+              hello 
             </Typography>
           </Container>
         </div>
       </main>
+      <footer>
+        <Typography variant="h6" align="center" gutterBottom>
+          Footer
+        </Typography>
+        <Typography variant="subtitle1" align="center" color="textSecondary">
+          hehe
+        </Typography>
+      </footer>
     </div>
   );
 }
