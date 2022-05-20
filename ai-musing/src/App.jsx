@@ -9,6 +9,7 @@ import {
   Tabs,
   styled,
   CssBaseline,
+  TextareaAutosize,
 } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 
@@ -82,14 +83,14 @@ function App() {
       </AppBar>
       <main>
         <div>
-          <Container maxWidth="sm" style={{ marginTop: '50px' }}>
+          <Container maxWidth="sm" style={{ marginTop: "50px" }}>
             <Typography
               variant="h4"
               align="center"
               color="textPrimary"
               gutterBottom
             >
-              Enter Your Prompt - 
+              Enter Your Prompt -
             </Typography>
             <Typography
               variant="h5"
@@ -99,6 +100,17 @@ function App() {
             >
               What's on your mind?
             </Typography>
+            <form>
+            <TextareaAutosize
+              aria-label="textarea"
+              minRows={6}
+              placeholder="If you stare at the Sun long enough, you get a dog... "
+              style={{ width: "100%", resize: 'vertical' }}
+            />
+          </form>
+          <Button>
+            Hello
+            </Button>
           </Container>
         </div>
       </main>
