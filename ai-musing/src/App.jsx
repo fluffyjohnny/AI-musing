@@ -12,6 +12,10 @@ import {
   TextareaAutosize,
 } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
+import { useEffect, useState } from "react";
+import { OpenAIApi, Configuration } from "openai";
+
+
 
 const sx = {
   mr: 1,
@@ -38,7 +42,35 @@ const BootstrapButton = styled(Button)({
   },
 });
 
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+
+const configuration = new Configuration({
+  apiKey: API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+const response = async () => await openai.createCompletion("text-curie-001", {
+  prompt: "Say this is a test",
+  temperature: 0.7,
+  max_tokens: 20,
+  top_p: 1,
+  frequency_penalty: 0,
+  presence_penalty: 0,
+}).then((res) => {
+  console.log(res.data.choices['0'].text)
+})
+.catch((err) => {
+  console.log('err', err.response.data)
+});
+
+response();
+
+
 function App() {
+
+
+
+
   return (
     <div className="App">
       <CssBaseline />
@@ -111,6 +143,9 @@ function App() {
           <Button>
             Hello
             </Button>
+            <Typography>
+              hello
+            </Typography>
           </Container>
         </div>
       </main>
