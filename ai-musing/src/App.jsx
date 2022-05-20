@@ -9,12 +9,12 @@ import {
   Tabs,
   styled,
   CssBaseline,
-  TextareaAutosize,
 } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useEffect, useState } from "react";
 import { OpenAIApi, Configuration } from "openai";
 import './styles.scss';
+import Form from "./components/form";
 
 const sx = {
   mr: 1,
@@ -115,40 +115,7 @@ function App() {
         </Container>
       </AppBar>
       <main>
-        <div>
-          <Container maxWidth="sm" style={{ marginTop: "50px" }}>
-            <Typography
-              variant="h4"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              Enter Your Prompt -
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              What's on your mind?
-            </Typography>
-            <form>
-            <TextareaAutosize
-              aria-label="textarea"
-              minRows={6}
-              placeholder="If you stare at the Sun long enough, you get a dog... "
-              style={{ width: "100%", resize: 'vertical' }}
-            />
-          </form>
-          <Button>
-            Hello
-            </Button>
-            <Typography>
-              hello 
-            </Typography>
-          </Container>
-        </div>
+        <Form />
       </main>
       <footer>
         <Typography variant="h6" align="center" gutterBottom>
