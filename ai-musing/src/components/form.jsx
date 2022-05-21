@@ -26,7 +26,6 @@ const Form = (props) => {
     setError(false);
     setLoading(true);
 
-    // Data for completions endpoint
     const data = {
       prompt: prompt,
       temperature: 0.5,
@@ -36,7 +35,6 @@ const Form = (props) => {
       presence_penalty: 0.0,
     };
 
-    // Send request to completions endpoint
     const response = await fetch(
       `https://api.openai.com/v1/engines/text-curie-001/completions`,
       {
@@ -49,9 +47,8 @@ const Form = (props) => {
       }
     );
 
- 
+    props.addResponse(prompt, await response.json());
 
-    // Reset states
     setPrompt("");
     setError(false);
     setLoading(false);
@@ -66,21 +63,27 @@ const Form = (props) => {
           color="textPrimary"
           gutterBottom
         >
-          Enter Your Prompt -
+          Enter Your Prompt
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
           What's on your mind?
         </Typography>
         <form>
           <TextareaAutosize
+            id="prompt"
             aria-label="textarea"
             minRows={6}
             placeholder="If you stare at the Sun long enough, you get a dog... "
             style={{ width: "100%", resize: "vertical" }}
+            value={prompt}
+            // ref={promptTextArea}
+            onChange={handleChange}
+            onFocus={handleFocus}
           />
         </form>
-        <Button>Hello</Button>
-        <Typography>hello</Typography>
+        <Button onClick={handleSubmit} disabled={loading} color="primary" size="large">
+          Submit
+        </Button>
       </Container>
     </div>
   );

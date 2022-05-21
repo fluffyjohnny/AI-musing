@@ -11,10 +11,11 @@ import {
   CssBaseline,
 } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { OpenAIApi, Configuration } from "openai";
 import './styles.scss';
 import Form from "./components/form";
+import Response from './components/response'
 
 const sx = {
   mr: 1,
@@ -41,33 +42,40 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+// const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
-const configuration = new Configuration({
-  apiKey: API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+// const configuration = new Configuration({
+//   apiKey: API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
 
-const response = async () => await openai.createCompletion("text-curie-001", {
-  prompt: "Say this is a test",
-  temperature: 0.7,
-  max_tokens: 20,
-  top_p: 1,
-  frequency_penalty: 0,
-  presence_penalty: 0,
-}).then((res) => {
-  console.log(res.data.choices['0'].text)
-})
-.catch((err) => {
-  console.log('err', err.response.data)
-});
+// const response = async () => await openai.createCompletion("text-curie-001", {
+//   prompt: "Say this is a test",
+//   temperature: 0.7,
+//   max_tokens: 20,
+//   top_p: 1,
+//   frequency_penalty: 0,
+//   presence_penalty: 0,
+// }).then((res) => {
+//   console.log(res.data.choices['0'].text)
+// })
+// .catch((err) => {
+//   console.log('err', err.response.data)
+// });
 
-const hello = response();
+// response();
 
 
 function App() {
+  const [responses, setResponses] = useState([]);
 
-
+  function addResponse(prompt, response) {
+    const newResponse = {
+      prompt: prompt,
+      response: response.choices[0].text
+    };
+    setResponses([...responses, newResponse]);
+  }
 
 
   return (
@@ -115,7 +123,10 @@ function App() {
         </Container>
       </AppBar>
       <main>
-        <Form />
+        <Form addResponse={addResponse}/>
+        {responses.map((response, index) => (
+          <Response key={index} data={response}/>
+        ))}
       </main>
       <footer>
         <Typography variant="h6" align="center" gutterBottom>
