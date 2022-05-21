@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import {
   AppBar,
@@ -12,10 +11,10 @@ import {
 } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useState } from "react";
-import { OpenAIApi, Configuration } from "openai";
-import './styles.scss';
+import "./styles.scss";
 import Form from "./components/form";
-import Response from './components/response'
+import Response from "./components/response";
+import Footer from "./components/footer";
 
 const sx = {
   mr: 1,
@@ -42,29 +41,6 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-// const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-
-// const configuration = new Configuration({
-//   apiKey: API_KEY,
-// });
-// const openai = new OpenAIApi(configuration);
-
-// const response = async () => await openai.createCompletion("text-curie-001", {
-//   prompt: "Say this is a test",
-//   temperature: 0.7,
-//   max_tokens: 20,
-//   top_p: 1,
-//   frequency_penalty: 0,
-//   presence_penalty: 0,
-// }).then((res) => {
-//   console.log(res.data.choices['0'].text)
-// })
-// .catch((err) => {
-//   console.log('err', err.response.data)
-// });
-
-// response();
-
 
 function App() {
   const [responses, setResponses] = useState([]);
@@ -72,11 +48,10 @@ function App() {
   function addResponse(prompt, response) {
     const newResponse = {
       prompt: prompt,
-      response: response.choices[0].text
+      response: response.choices[0].text,
     };
     setResponses([...responses, newResponse]);
   }
-
 
   return (
     <div className="App">
@@ -123,19 +98,12 @@ function App() {
         </Container>
       </AppBar>
       <main>
-        <Form addResponse={addResponse}/>
+        <Form addResponse={addResponse} />
         {responses.map((response, index) => (
-          <Response key={index} data={response}/>
+          <Response key={index} data={response} />
         ))}
       </main>
-      <footer>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary">
-          hehe
-        </Typography>
-      </footer>
+      <Footer />
     </div>
   );
 }

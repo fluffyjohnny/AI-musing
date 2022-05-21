@@ -1,22 +1,12 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { Typography, Container, Button, TextareaAutosize } from "@mui/material";
 
 const Form = (props) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [prompt, setPrompt] = useState("");
-  const promptTextArea = useRef < HTMLTextAreaElement > null;
+  const [input, setInput] = useState("");
 
   function handleFocus() {
-    setError(false);
-    setLoading(false);
-  }
-
-  function handleChange() {
-    if (promptTextArea.current) {
-      setPrompt(promptTextArea.current.value);
-    }
-
     setError(false);
     setLoading(false);
   }
@@ -27,9 +17,9 @@ const Form = (props) => {
     setLoading(true);
 
     const data = {
-      prompt: prompt,
+      prompt: input,
       temperature: 0.5,
-      max_tokens: 64,
+      max_tokens: 128,
       top_p: 1.0,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
@@ -47,11 +37,12 @@ const Form = (props) => {
       }
     );
 
-    props.addResponse(prompt, await response.json());
+    props.addResponse(input, await response.json());
 
-    setPrompt("");
     setError(false);
     setLoading(false);
+
+    document.getElementById("prompt").value = "";
   }
 
   return (
@@ -61,11 +52,18 @@ const Form = (props) => {
           variant="h4"
           align="center"
           color="textPrimary"
+          fontFamily="monospace"
           gutterBottom
         >
           Enter Your Prompt
         </Typography>
-        <Typography variant="h5" align="center" color="textSecondary" paragraph>
+        <Typography
+          variant="h5"
+          align="center"
+          fontFamily="monospace"
+          color="textSecondary"
+          paragraph
+        >
           What's on your mind?
         </Typography>
         <form>
@@ -74,17 +72,24 @@ const Form = (props) => {
             aria-label="textarea"
             minRows={6}
             placeholder="If you stare at the Sun long enough, you get a dog... "
-            style={{ width: "100%", resize: "vertical" }}
-            value={prompt}
-            // ref={promptTextArea}
-            onChange={handleChange}
+            style={{ width: "80%", resize: "vertical" }}
+            onChange={(e) => setInput(e.target.value)}
             onFocus={handleFocus}
           />
         </form>
-        <Button onClick={handleSubmit} disabled={loading} color="primary" size="large">
+        <br />
+        <Button
+          onClick={handleSubmit}
+          variant="outlined"
+          color="info"
+          disabled={loading}
+          size="large"
+          fontFamily="monospace"
+        >
           Submit
         </Button>
       </Container>
+      <br />
     </div>
   );
 };
