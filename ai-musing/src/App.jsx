@@ -8,6 +8,7 @@ import {
   Tabs,
   styled,
   CssBaseline,
+  Grid,
 } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useState } from "react";
@@ -40,7 +41,6 @@ const BootstrapButton = styled(Button)({
     borderColor: "#005cbf",
   },
 });
-
 
 function App() {
   const [responses, setResponses] = useState([]);
@@ -87,7 +87,7 @@ function App() {
             </BootstrapButton>
             <BootstrapButton
               key="2"
-              href="https://github.com/fluffyjohnny"
+              href="https://github.com/fluffyjohnny/AI-musing"
               size="medium"
               target="_blank"
               sx={sx}
@@ -97,12 +97,22 @@ function App() {
           </Toolbar>
         </Container>
       </AppBar>
-      <main>
+      <Container maxWidth="lg" sx={{ marginBottom: "20px", backgroundColor: "#dae9ff" }}>
         <Form addResponse={addResponse} />
-        {responses.map((response, index) => (
-          <Response key={index} data={response} />
-        ))}
-      </main>
+        <Container align='center'>
+          <Grid container>
+            {responses.map((response, index) => (
+              <Grid key={index} item>
+                <Response key={index} data={response} />
+              </Grid>
+            ))}
+          </Grid>
+          <br />
+          <br />
+          <br />
+        </Container>
+      </Container>
+      <br />
       <Footer />
     </div>
   );

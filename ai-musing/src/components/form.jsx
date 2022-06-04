@@ -64,7 +64,7 @@ const Form = (props) => {
           color="textSecondary"
           paragraph
         >
-          What's on your mind?
+         Amuse me
         </Typography>
         <form>
           <TextareaAutosize
