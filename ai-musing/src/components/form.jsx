@@ -47,7 +47,7 @@ const Form = (props) => {
 
   return (
     <div>
-      <Container maxWidth="sm" style={{ marginTop: "50px" }}>
+      <Container maxWidth="sm" style={{ marginTop: "50px"}}> 
         <Typography
           variant="h4"
           align="center"
@@ -57,22 +57,14 @@ const Form = (props) => {
         >
           Enter Your Prompt
         </Typography>
-        <Typography
-          variant="h5"
-          align="center"
-          fontFamily="monospace"
-          color="textSecondary"
-          paragraph
-        >
-         Amuse me
-        </Typography>
+        <br/>
         <form>
           <TextareaAutosize
             id="prompt"
             aria-label="textarea"
             minRows={6}
-            placeholder="If you stare at the Sun long enough, you get a dog... "
-            style={{ width: "80%", resize: "vertical" }}
+            placeholder=" Start typing here"
+            style={{ width: "100%", resize: "vertical", borderRadius: "12px" }}
             onChange={(e) => setInput(e.target.value)}
             onFocus={handleFocus}
           />

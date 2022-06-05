@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 const Response = (props) => {
   let { prompt, response } = props.data;
   return (
-    <Card sx={{ minWidth: 300, maxWidth: 600 }}>
+    <Card sx={{ minHeight: '250px'}}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Prompt:
@@ -15,7 +15,7 @@ const Response = (props) => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Response:
         </Typography>
-        <Typography variant="h5" component="div" gutterBottom>
+        <Typography variant="h5" component="div" gutterBottom overflow="scroll">
           {response}
         </Typography>
       </CardContent>
