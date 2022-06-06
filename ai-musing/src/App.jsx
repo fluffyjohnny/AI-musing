@@ -3,6 +3,8 @@ import {
   Container,
   CssBaseline,
   Grid,
+  createTheme,
+  ThemeProvider,
 } from "@mui/material";
 
 import { useState } from "react";
@@ -14,6 +16,18 @@ import Header from "./components/Header"
 
 
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#d1d1d1",
+      second: "#e2e2e2",
+    },
+    secondary: {
+      main: "#e1dbd6",
+      second: "#f9f6f2",
+    }
+  }
+})
 
 
 function App() {
@@ -29,6 +43,7 @@ function App() {
 
   return (
     <div className="App">
+      <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
       <Container sx={{ marginBottom: "20px", backgroundColor: "#dae9ff" }}>
@@ -48,6 +63,7 @@ function App() {
       </Container>
       <br />
       <Footer />
+      </ ThemeProvider>
     </div>
   );
 }

@@ -36,7 +36,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar position="relative" color="primary">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <SmartToyIcon sx={{ mr: 3 }} />
