@@ -2,24 +2,27 @@ import { useState } from "react";
 import { Typography, Container, Button, TextareaAutosize } from "@mui/material";
 
 const Form = (props) => {
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
 
   function handleFocus() {
-    setError(false);
     setLoading(false);
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setError(false);
     setLoading(true);
+
+    if (input === "") {
+      setLoading(false);
+      alert("Please input your prompt!");
+      return;
+    }
 
     const data = {
       prompt: input,
       temperature: 0.5,
-      max_tokens: 128,
+      max_tokens: 250,
       top_p: 1.0,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
@@ -39,7 +42,6 @@ const Form = (props) => {
 
     props.addResponse(input, await response.json());
 
-    setError(false);
     setLoading(false);
 
     document.getElementById("prompt").value = "";
@@ -47,7 +49,7 @@ const Form = (props) => {
 
   return (
     <div>
-      <Container maxWidth="sm" style={{ marginTop: "50px"}}> 
+      <Container maxWidth="sm" style={{ marginTop: "50px" }}>
         <Typography
           variant="h4"
           align="center"
@@ -64,9 +66,9 @@ const Form = (props) => {
           fontFamily="monospace"
           gutterBottom
         >
-          Ask Me Anything 
+          Ask Me Anything
         </Typography>
-        <br/>
+        <br />
         <form>
           <TextareaAutosize
             id="prompt"
