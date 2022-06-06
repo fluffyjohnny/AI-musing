@@ -13,9 +13,10 @@ const Form = (props) => {
     event.preventDefault();
     setLoading(true);
 
-    if (input === "") {
+    if (document.getElementById("prompt").value === "") {
       setLoading(false);
       alert("Please input your prompt!");
+      document.getElementById("prompt").focus();
       return;
     }
 
@@ -45,6 +46,7 @@ const Form = (props) => {
     setLoading(false);
 
     document.getElementById("prompt").value = "";
+    document.getElementById("prompt").focus();
   }
 
   return (
