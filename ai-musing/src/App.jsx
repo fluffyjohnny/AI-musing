@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import "./styles.scss";
 import Form from "./components/Form";
-import Response from "./components/response";
+import Response from "./components/Response";
 import Footer from "./components/Footer";
 import Header from "./components/Header"
 
@@ -38,7 +38,7 @@ function App() {
       prompt: prompt,
       response: response.choices[0].text,
     };
-    setResponses([...responses, newResponse]);
+    setResponses([newResponse, ...responses]);
   }
 
   return (

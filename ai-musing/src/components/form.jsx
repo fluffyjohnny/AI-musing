@@ -57,6 +57,15 @@ const Form = (props) => {
         >
           Enter Your Prompt
         </Typography>
+        <Typography
+          variant="subtitle2"
+          align="center"
+          color="textSecondary"
+          fontFamily="monospace"
+          gutterBottom
+        >
+          Ask Me Anything 
+        </Typography>
         <br/>
         <form>
           <TextareaAutosize
