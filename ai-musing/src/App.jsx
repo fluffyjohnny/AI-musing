@@ -8,13 +8,11 @@ import {
 } from "@mui/material";
 
 import { useState } from "react";
-import "./styles.scss";
+import "./styles/footer.scss";
 import Form from "./components/Form";
 import Response from "./components/Response";
 import Footer from "./components/Footer";
-import Header from "./components/Header"
-
-
+import Header from "./components/Header";
 
 const theme = createTheme({
   palette: {
@@ -25,10 +23,9 @@ const theme = createTheme({
     secondary: {
       main: "#e1dbd6",
       second: "#f9f6f2",
-    }
-  }
-})
-
+    },
+  },
+});
 
 function App() {
   const [responses, setResponses] = useState([]);
@@ -44,26 +41,38 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Header />
-      <Container sx={{ marginBottom: "20px", backgroundColor: theme.palette.secondary }}>
-        <Form addResponse={addResponse} />
-        <Container maxWidth="100%">
-          <Grid container sx={{ justifyContent: 'center'}}>
-            {responses.map((response, index) => (
-              <Grid item key={index} sx={{ margin: "15px 15px"}} xs={12} sm={5} lg={3}>
-                <Response key={index} data={response} />
-              </Grid>
-            ))}
-          </Grid>
-          <br />
-          <br />
-          <br />
+        <CssBaseline />
+        <Header />
+        <Container
+          sx={{
+            marginBottom: "20px",
+            backgroundColor: theme.palette.secondary,
+          }}
+        >
+          <Form addResponse={addResponse} />
+          <Container maxWidth="100%">
+            <Grid container sx={{ justifyContent: "center" }}>
+              {responses.map((response, index) => (
+                <Grid
+                  item
+                  key={index}
+                  sx={{ margin: "15px 15px" }}
+                  xs={12}
+                  sm={5}
+                  lg={3}
+                >
+                  <Response key={index} data={response} />
+                </Grid>
+              ))}
+            </Grid>
+            <br />
+            <br />
+            <br />
+          </Container>
         </Container>
-      </Container>
-      <br />
-      <Footer />
-      </ ThemeProvider>
+        <br />
+        <Footer />
+      </ThemeProvider>
     </div>
   );
 }
