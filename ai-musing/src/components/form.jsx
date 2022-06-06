@@ -72,8 +72,8 @@ const Form = (props) => {
         <br />
         <Button
           onClick={handleSubmit}
-          variant="outlined"
-          color="info"
+          variant="contained"
+          color="secondary"
           disabled={loading}
           size="large"
           fontFamily="monospace"

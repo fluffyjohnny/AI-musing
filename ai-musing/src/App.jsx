@@ -46,7 +46,7 @@ function App() {
       <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Container sx={{ marginBottom: "20px", backgroundColor: "#dae9ff" }}>
+      <Container sx={{ marginBottom: "20px", backgroundColor: theme.palette.secondary }}>
         <Form addResponse={addResponse} />
         <Container maxWidth="100%">
           <Grid container sx={{ justifyContent: 'center'}}>
